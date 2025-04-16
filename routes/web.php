@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsApiController;
 
 Route::get('/', function () {
     return view('home');
@@ -29,3 +30,5 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+Route::get('/news', [NewsApiController::class, 'getNews'])->name('news');
