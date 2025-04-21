@@ -9,6 +9,8 @@ class Berita extends Model
 {
     use HasFactory;
 
+    protected $table = 'berita';
+
     protected $fillable = [
         'judul',
         'konten',
@@ -16,6 +18,5 @@ class Berita extends Model
         'sumber',
         'url',
         'gambar_url',
-        'published_at',
     ];
 }

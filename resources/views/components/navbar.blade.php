@@ -19,13 +19,25 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
-            <a href="{{ route('home') }}" class="text-sm/6 font-semibold text-gray-900">Berita Terkini</a>
-            <a href="{{ route('otherNews') }}" class="text-sm/6 font-semibold text-gray-900">Berita Lainnya</a>
-            <a href="#" class="text-sm/6 font-semibold text-gray-900">Tentang Kami</a>
+            <a href="{{ route('home') }}" class="text-sm font-semibold text-gray-900">Berita Terkini</a>
+            <a href="{{ route('otherNews') }}" class="text-sm font-semibold text-gray-900">Berita Lainnya</a>
+            <a href="#" class="text-sm font-semibold text-gray-900">Tentang Kami</a>
         </div>
+
+        <!-- Logic for displaying "Profile" with Avatar -->
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="{{ route('login') }}" class="text-sm/6 font-semibold text-gray-900">Log in <span
-                    aria-hidden="true">&rarr;</span></a>
+            @auth
+                <!-- If user is authenticated, show Profile with Avatar -->
+                <a href="{{ route('profile') }}" class="flex items-center space-x-2 text-sm font-semibold text-gray-900">
+                    <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                        src="{{ Auth::user()->avatar ? Storage::url(Auth::user()->avatar) : 'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }}"
+                        alt="Avatar">
+                </a>
+            @else
+                <!-- If user is not authenticated, show "Login" -->
+                <a href="{{ route('login') }}" class="text-sm font-semibold text-gray-900">Log in <span
+                        aria-hidden="true">&rarr;</span></a>
+            @endauth
         </div>
     </nav>
 </div>

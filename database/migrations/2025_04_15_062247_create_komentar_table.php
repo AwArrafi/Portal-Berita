@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('komentar');
             $table->timestamps();
             $table->softDeletes();
-
             $table->foreign('berita_id')->references('id')->on('berita')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
