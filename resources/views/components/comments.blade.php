@@ -25,10 +25,22 @@
                 <div class="flex-1">
                     <p class="font-semibold text-gray-900">{{ $komen->user->username ?? 'Anonim' }}</p>
                     <p class="text-sm text-gray-600">{{ $komen->komentar }}</p>
+
+                    <!-- Tombol Hapus -->
+                    @if ($komen->user_id == auth()->id())
+                        <form action="{{ route('komentar.delete', ['id' => $komen->id, 'section' => 'news']) }}"
+                            method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="text-red-600 hover:text-red-800 text-sm font-semibold transition">
+                                Hapus
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @endforeach
     </div>
-
 
 </div>

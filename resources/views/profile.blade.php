@@ -14,15 +14,8 @@
     <div class="max-w-4xl mx-auto mt-8 px-4">
         <div class="flex justify-between items-center">
             <!-- Tombol kembali ke halaman sebelumnya -->
-            <a href="{{ url()->previous() }}"
-                class="inline-flex items-center px-4 py-2 text-sm text-gray-600 bg-gray-200 rounded hover:bg-gray-300 transition">
+            <a href="{{ url()->previous() }}" class="inline-flex items-center px-4 py-2 text-sm text-gray-600 rounded">
                 ← Kembali
-            </a>
-
-            <!-- Tombol ke homepage -->
-            <a href="{{ route('home') }}"
-                class="inline-flex items-center px-4 py-2 text-sm text-white bg-gray-600 rounded hover:bg-gray-500 transition">
-                Beranda
             </a>
         </div>
     </div>
@@ -64,7 +57,7 @@
             <div>
                 <template x-if="!editMode">
                     <button @click="editMode = true"
-                        class="px-5 py-2 text-sm bg-gray-600 text-white font-medium rounded hover:bg-gray-500 transition">
+                        class="px-5 py-2 text-sm bg-gray-600 text-white font-medium rounded">
                         Edit
                     </button>
                 </template>
@@ -79,7 +72,7 @@
         </div>
 
         <!-- Username Update Form -->
-        <form id="profileForm" action="{{ route('profile.update') }}" method="POST"
+        <form id="profileForm" action="{{ route('profile.updateUsername') }}" method="POST"
             class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
             @csrf
 
@@ -146,6 +139,15 @@
                 </button>
             </div>
         </form>
+
+        <div class="flex justify-end mt-4">
+            <form action="{{ route('logout') }}" method="POST" class="inline-block">
+                @csrf
+                <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-semibold transition">
+                    Logout
+                </button>
+            </form>
+        </div>
     </div>
 
 </body>
