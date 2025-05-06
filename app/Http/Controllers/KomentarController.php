@@ -12,9 +12,11 @@ class KomentarController extends Controller
     {
         $request->validate([
             'komentar' => 'required|string|max:1000',
+            'berita_id' => 'required|exists:berita,id',
         ]);
 
         Komentar::create([
+            'berita_id' => $request->berita_id,
             'user_id' => Auth::id(),
             'komentar' => $request->komentar,
         ]);
@@ -22,20 +24,22 @@ class KomentarController extends Controller
         return back()->with('success', 'Komentar berhasil dikirim!');
     }
 
-    public function destroy($id, $section)
+    public function destroy($id, $section, Request $request)
     {
         // Ambil komentar berdasarkan ID
         $komentar = Komentar::findOrFail($id);
 
         // Pastikan komentar yang akan dihapus milik pengguna yang sedang login
-        if ($komentar->user_id !== Auth::id()) {
-            return back()->with('error', 'Anda tidak memiliki izin untuk menghapus komentar ini.');
+        if ($komentar->user_id == $request->user()->id) {
+            $beritaId = $komentar->berita_id; // simpan berita id sebelum delete
+            $komentar->delete();
+
+            return redirect()->route('news.show', ['id' => $beritaId])
+                ->with('success', 'Komentar berhasil dihapus.');
         }
 
-        // Hapus komentar
-        $komentar->delete();
-
-        // Redirect kembali ke halaman yang sesuai
-        return redirect()->route($section)->with('success', 'Komentar berhasil dihapus!');
+        // Jika bukan pemilik komentar, kita redirect kembali ke news.show (tanpa hapus)
+        return redirect()->route('news.show', ['id' => $komentar->berita_id])
+            ->with('error', 'Anda tidak memiliki izin untuk menghapus komentar ini.');
     }
 }

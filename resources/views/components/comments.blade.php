@@ -1,10 +1,10 @@
-<!-- Komentar Section -->
 <div class="p-6 mt-1">
     <label for="comment" class="block text-xl font-semibold text-gray-900">Komentar</label>
 
     <!-- Form Komentar -->
     <form action="{{ route('komentar.store') }}" method="POST" class="relative">
         @csrf
+        <input type="hidden" name="berita_id" value="{{ $berita->id }}">
         <textarea name="komentar" rows="4"
             class="mt-2 p-4 w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-700 focus:border-gray-700"
             placeholder="Tulis komentar Anda di sini"></textarea>
@@ -15,10 +15,9 @@
         </button>
     </form>
 
-
     <!-- Daftar Komentar -->
     <div class="mt-20">
-        @foreach (\App\Models\Komentar::latest()->get() as $komen)
+        @foreach (\App\Models\Komentar::where('berita_id', $berita->id)->latest()->get() as $komen)
             <div class="flex items-start space-x-4 mb-4">
                 <img src="https://i.pravatar.cc/100?u={{ $komen->user_id }}" alt="User"
                     class="w-10 h-10 rounded-full border-2 border-gray-400">
@@ -42,5 +41,4 @@
             </div>
         @endforeach
     </div>
-
 </div>

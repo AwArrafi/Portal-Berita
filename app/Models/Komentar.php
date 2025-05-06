@@ -11,6 +11,7 @@ class Komentar extends Model
 
     protected $table = 'komentar';
     protected $fillable = [
+        'berita_id',
         'user_id',
         'komentar',
     ];
