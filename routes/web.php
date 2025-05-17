@@ -15,8 +15,13 @@ Route::get('/', [NewsApiController::class, 'getNews'])->name('home');
 Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/news/{id}', [NewsApiController::class, 'show'])->name('news.show');
 
-// Rute untuk Halaman Lainnya
-Route::get('/otherNews', [PageController::class, 'otherNews'])->name('otherNews');
+
+Route::get('/otherNews', [NewsApiController::class, 'getOtherNews'])->name('otherNews');
+Route::get('/othernews', [NewsApiController::class, 'getNews'])->name('news.getNews');
+
+Route::get('/load-more-other-news', [NewsApiController::class, 'getOtherNews'])->name('otherNews.ajax');
+Route::get('/load-other-news', [NewsApiController::class, 'loadMoreOtherNews'])->name('otherNews.load');
+
 Route::get('/about', function () {
     return view('about');
 });

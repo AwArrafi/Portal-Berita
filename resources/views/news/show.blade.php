@@ -23,7 +23,8 @@
             </div>
 
             <div class="w-full mt-8 p-6 flex flex-col items-start">
-                <img class="rounded-lg shadow-lg" src="{{ $berita->gambar_url }}" alt="Image for {{ $berita->judul }}">
+                <img class="rounded-lg shadow-lg news-image" src="{{ $berita->gambar_url }}"
+                    alt="Image for {{ $berita->judul }}">
             </div>
 
             <div class="p-6">

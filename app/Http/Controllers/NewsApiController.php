@@ -4,68 +4,136 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class NewsApiController extends Controller
 {
     // Controller NewsApiController.php
-    // Controller NewsApiController.php
     public function getNews(Request $request)
     {
         try {
-            // Dummy Data Artikel Berita dengan Gambar dan Detail
-            $articles = [
-                [
-                    'title' => 'Penurunan Harga Properti di Jakarta',
-                    'description' => 'Artikel ini mengungkapkan faktor-faktor yang menyebabkan penurunan harga properti di Jakarta.',
-                    'url' => 'https://www.example.com',
-                    'urlToImage' => 'https://via.placeholder.com/400x300.png?text=Penurunan+Harga+Properti',
-                    'publishedAt' => '2025-04-15T12:54:24Z',
-                ],
-                [
-                    'title' => 'Kebijakan Pemerintah dalam Mengurangi Karbon',
-                    'description' => 'Pemerintah Indonesia baru-baru ini mengeluarkan kebijakan untuk mengurangi emisi karbon.',
-                    'url' => 'https://www.example.com',
-                    'urlToImage' => 'https://via.placeholder.com/400x300.png?text=Kebijakan+Pemerintah',
-                    'publishedAt' => '2025-04-16T08:30:00Z',
-                ],
-            ];
+            $limit = $request->get('limit', 5);
+            $offset = $request->get('offset', 0);
 
-            // Simpan berita ke database menggunakan model Berita
-            foreach ($articles as $article) {
-                Berita::create([
-                    'judul' => $article['title'],
-                    'konten' => $article['description'],
-                    'penulis' => 'Unknown',
-                    'sumber' => 'Example Source',
-                    'url' => $article['url'],
-                    'gambar_url' => $article['urlToImage'],
+            // Cek apakah jumlah data di DB sudah mencukupi
+            $currentCount = Berita::count();
+
+            if ($currentCount < ($offset + $limit)) {
+                // Ambil dari API jika DB kurang dari jumlah yang diminta
+                $response = Http::get('https://api.thenewsapi.com/v1/news/all', [
+                    'api_token' => 'PsXn1cRXaeCIRK13UN0uPBk242KGdCNkPqIsQG9r',
+                    'language' => 'en',
+                    'limit' => 10,
                 ]);
+
+                $articles = $response->json()['data'] ?? [];
+
+                foreach ($articles as $article) {
+                    Berita::firstOrCreate(
+                        ['judul' => $article['title']],
+                        [
+                            'konten' => $article['description'] ?? 'No content',
+                            'gambar_url' => $article['image_url'] ?? '',
+                            'url' => $article['url'] ?? '',
+                        ]
+                    );
+                }
             }
 
+            $allBerita = Berita::latest()->get();
 
-            $berita = Berita::latest()->get();
 
-            if ($request->has('id')) {
-                $beritaDetail = Berita::find($request->id);
-                return view('news', ['berita' => $berita, 'beritaDetail' => $beritaDetail]);
+            $mainNews = $allBerita->random();
+
+            // Ambil berita dari DB dengan offset dan limit
+            $berita = Berita::latest()->skip($offset)->take($limit)->get();
+
+            if ($request->ajax()) {
+                return response()->json(view('partials.news', compact('berita'))->render());
             }
 
-
-            return view('home', ['berita' => $berita]);
+            return view('home', ['berita' => $berita, 'mainNews' => $mainNews]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Something went wrong. ' . $e->getMessage()], 500);
         }
     }
 
+    public function getOtherNews(Request $request)
+    {
+        try {
+            $limit = $request->get('limit', 5);
+            $offset = $request->get('offset', 0);
+
+            // Ambil dari API jika database belum mencukupi
+            $currentCount = Berita::count();
+            if ($currentCount < ($offset + $limit)) {
+                $response = Http::get('https://api.thenewsapi.com/v1/news/all', [
+                    'api_token' => 'PsXn1cRXaeCIRK13UN0uPBk242KGdCNkPqIsQG9r',
+                    'language' => 'en',
+                    'limit' => 10,
+                ]);
+
+                $articles = $response->json()['data'] ?? [];
+
+                foreach ($articles as $article) {
+                    Berita::firstOrCreate(
+                        ['judul' => $article['title']],
+                        [
+                            'konten' => $article['description'] ?? 'No content',
+                            'gambar_url' => $article['image_url'] ?? '',
+                            'url' => $article['url'] ?? '',
+                        ]
+                    );
+                }
+            }
+
+            // Ambil data dari DB dengan offset & limit
+            $berita = Berita::latest()->skip($offset)->take($limit)->get();
+
+            if ($request->ajax()) {
+                $html = '';
+                foreach ($berita as $beritaItem) {
+                    $html .= view('partials.othernews', compact('beritaItem'))->render();
+                }
+                return response()->json($html);
+            }
+
+            return view('otherNews', ['berita' => $berita]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Something went wrong. ' . $e->getMessage()], 500);
+        }
+    }
+
+
+    public function loadMoreOtherNews(Request $request)
+    {
+        try {
+            $limit = $request->get('limit', 5);
+            $offset = $request->get('offset', 0);
+
+            $berita = Berita::latest()->skip($offset)->take($limit)->get();
+
+            $html = '';
+            foreach ($berita as $beritaItem) {
+                $html .= view('partials.othernews', compact('beritaItem'))->render();
+            }
+
+            return response()->json($html);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to load other news.'], 500);
+        }
+    }
+
+
+    // Method untuk menampilkan detail berita berdasarkan id
     public function show($id)
     {
-        $berita = Berita::find($id); // Find the news article by its ID
+        $berita = Berita::find($id);
 
         if (!$berita) {
-            return response()->json(['error' => 'News not found.'], 404); // If not found, return an error
+            return response()->json(['error' => 'News not found.'], 404);
         }
 
-        return view('news.show', compact('berita')); // Display the specific article
+        return view('news.show', compact('berita'));
     }
 }
