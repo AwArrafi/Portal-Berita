@@ -15,47 +15,70 @@
         <x-navbar></x-navbar>
     </header>
 
+    <!-- Main Content Other News -->
+    <!-- Main Content Other News -->
     <div class="relative px-6 pt-45 lg:px-8">
         <div class="max-w-7xl mx-auto text-left">
-            <!-- Judul di atas -->
+            <!-- Judul & Info Berita Utama -->
             <div class="p-6">
                 <div class="flex space-x-2 mt-4">
                     <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
                     <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
                 </div>
-                <h2 class="text-3xl font-bold mt-2">Keadilan Terabaikan: Hukum yang Menguntungkan Satu Pihak</h2>
-                <p class="text-lg mt-2">4 Februari 2025</p>
+                <h2 class="text-3xl font-bold mt-2">{{ $mainNews->judul }}</h2>
+                <p class="text-lg mt-2">{{ \Carbon\Carbon::parse($mainNews->created_at)->format('d F Y') }}</p>
             </div>
 
-            <!-- Gambar di bawah judul dan tanggal -->
+            <!-- Gambar Berita Utama -->
             <div class="w-full mt-8 p-6 flex flex-col items-start">
-                <img class="rounded-lg shadow-lg" src="assets/img/sample.jpg" alt="Hot News Image">
+                <img class="rounded-md shadow-md w-full max-w-xl" src="{{ $mainNews->gambar_url }}"
+                    alt="Image for {{ $mainNews->judul }}">
             </div>
 
-            <!-- Deskripsi di bawah gambar -->
+            <!-- Deskripsi Berita Utama -->
             <div class="p-6">
-                <p class="mt-4 text-lg ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
-                    Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                    Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-                    Vestibulum lacinia arcu eget nulla. Nulla vitae massa. Nulla quis orci. Donec elit libero, sodales
-                    nec, volutpat a, suscipit non, turpis. Integer tincidunt. Cras dapibus. Vivamus elementum semper
-                    nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                    ac, enim. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero
-                    nisl, porta vel, scelerisque eget, malesuada at, neque.
-                </p>
+                <p class="mt-4 text-lg">{{ $mainNews->konten }}</p>
 
-                <p class="mt-6 text-lg ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
-                    Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                    Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-                    Vestibulum lacinia arcu eget nulla. Nulla vitae massa. Nulla quis orci. Donec elit libero, sodales
-                    nec, volutpat a, suscipit non, turpis. Integer tincidunt. Cras dapibus. Vivamus elementum semper
-                    nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                    ac, enim. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero
-                    nisl, porta vel, scelerisque eget, malesuada at, neque.
-                </p>
+                <!-- Tombol Baca Selengkapnya Mirip Looping -->
+                <div class="mt-4">
+                    <a href="{{ route('news.show', ['id' => $mainNews->id]) }}"
+                        class="text-yellow-500 font-semibold inline-block">
+                        Baca Selengkapnya
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+
+
+    <!-- List Berita Lainnya -->
+    <div class="relative px-6 pt-8 lg:px-8 mt-8">
+        <div class="max-w-7xl mx-auto text-left">
+            @foreach ($berita as $beritaItem)
+                <div class="flex flex-col lg:flex-row items-center mb-25">
+                    <div class="lg:w-1/4">
+                        <img class="rounded-md shadow-md w-full" src="{{ $beritaItem->gambar_url }}"
+                            alt="Image for {{ $beritaItem->judul }}">
+                    </div>
+                    <div class="lg:w-3/4 lg:pl-8 mt-4 lg:mt-0">
+                        <div class="flex space-x-2 mb-4">
+                            <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
+                            <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
+                        </div>
+                        <p class="text-sm text-gray-500">
+                            {{ \Carbon\Carbon::parse($beritaItem->created_at)->format('d F Y') }}</p>
+                        <h2 class="text-xl font-semibold mt-2">{{ $beritaItem->judul }}</h2>
+                        <p class="mt-4 text-lg text-gray-700">{{ \Str::limit($beritaItem->konten, 150) }}</p>
+                        <div class="mt-4">
+                            <a href="{{ route('news.show', ['id' => $beritaItem->id]) }}"
+                                class="text-yellow-500 font-semibold inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
 
     <div class="relative px-6 pt-8 lg:px-8 mt-8">
         <div class="max-w-7xl mx-auto text-left">

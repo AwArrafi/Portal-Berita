@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -39,7 +38,18 @@ class LoginController extends Controller
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/');
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            // Pastikan kamu punya kolom role di tabel users untuk menandai admin
+            if ($user->role === 'admin') {
+                // Redirect ke halaman admin dashboard (route admin.dashboard)
+                return redirect()->route('admin.dashboard');
+            } else {
+                // Redirect ke halaman user biasa
+                return redirect()->intended('/');
+            }
         }
 
         // Login gagal
