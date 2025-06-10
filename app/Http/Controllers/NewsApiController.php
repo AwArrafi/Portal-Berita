@@ -14,7 +14,6 @@ class NewsApiController extends Controller
             $limit = $request->get('limit', 5);
             $offset = $request->get('offset', 0);
 
-            // Ambil data terbaru dari API tiap request (atau sesuaikan jadwal update di cron job)
             $response = Http::get('https://api.thenewsapi.com/v1/news/all', [
                 'api_token' => 'PsXn1cRXaeCIRK13UN0uPBk242KGdCNkPqIsQG9r',
                 'language' => 'en',
@@ -23,6 +22,7 @@ class NewsApiController extends Controller
 
             $articles = $response->json()['data'] ?? [];
 
+            // Update or create berita berdasarkan title 
             foreach ($articles as $article) {
                 Berita::updateOrCreate(
                     ['judul' => $article['title']],
@@ -34,13 +34,9 @@ class NewsApiController extends Controller
                 );
             }
 
-            // Ambil semua berita terbaru
-            $allBerita = Berita::latest()->get();
 
-            // Pilih 1 berita random untuk mainNews
-            $mainNews = $allBerita->random();
+            $mainNews = Berita::latest()->first();
 
-            // Ambil berita untuk looping bawah (exclude mainNews)
             $berita = Berita::where('id', '!=', $mainNews->id)
                 ->latest()
                 ->skip($offset)
@@ -60,15 +56,12 @@ class NewsApiController extends Controller
         }
     }
 
-
-
     public function getOtherNews(Request $request)
     {
         try {
             $limit = 5;
             $offset = $request->get('offset', 0);
 
-            // Ambil data terbaru dari API setiap request (atau buat cron job untuk ini)
             $response = Http::get('https://api.thenewsapi.com/v1/news/all', [
                 'api_token' => 'PsXn1cRXaeCIRK13UN0uPBk242KGdCNkPqIsQG9r',
                 'language' => 'en',
@@ -88,13 +81,8 @@ class NewsApiController extends Controller
                 );
             }
 
-            // Ambil semua berita terbaru
-            $allBerita = Berita::latest()->get();
+            $mainNews = Berita::latest()->first();
 
-            // Pilih 1 berita utama (random)
-            $mainNews = $allBerita->random();
-
-            // Ambil berita lain (exclude mainNews)
             $berita = Berita::where('id', '!=', $mainNews->id)
                 ->latest()
                 ->skip($offset)
@@ -117,6 +105,7 @@ class NewsApiController extends Controller
             return response()->json(['error' => 'Something went wrong. ' . $e->getMessage()], 500);
         }
     }
+
 
 
 

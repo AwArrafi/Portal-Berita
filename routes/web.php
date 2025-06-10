@@ -9,6 +9,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\Admin\ProfileController;
 
 Route::get('/', [NewsApiController::class, 'getNews'])->name('home');
 
@@ -54,8 +56,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('berita', \App\Http\Controllers\Admin\BeritaController::class);
 
+
+    Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
+    Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
+
     Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 

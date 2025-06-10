@@ -14,7 +14,7 @@
     <div class="max-w-4xl mx-auto mt-8 px-4">
         <div class="flex justify-between items-center">
             <!-- Tombol kembali ke halaman sebelumnya -->
-            <a href="{{ url()->previous() }}" class="inline-flex items-center px-4 py-2 text-sm text-gray-600 rounded">
+            <a href="{{ url('/') }}" class="inline-flex items-center px-4 py-2 text-sm text-gray-600 rounded">
                 ← Kembali
             </a>
         </div>

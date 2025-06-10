@@ -23,7 +23,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.berita.create');
     }
 
     /**
@@ -31,7 +31,19 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input sesuai field model kamu
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'konten' => 'required|string',
+            'penulis' => 'nullable|string|max:100',
+            'sumber' => 'nullable|string|max:255',
+            'url' => 'nullable|url|max:255',
+            'gambar_url' => 'nullable|url|max:255',
+        ]);
+
+        Berita::create($validated);
+
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan!');
     }
 
     /**

@@ -24,7 +24,7 @@
             <tbody>
                 @forelse ($comments as $comment)
                     <tr class="hover:bg-gray-100">
-                        <td class="p-2 border">{{ $comment->user->name }}</td>
+                        <td class="p-2 border">{{ $comment->user->username }}</td>
                         <td class="p-2 border">{{ $comment->komentar }}</td>
                         <td class="p-2 border">
                             <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST"

@@ -21,7 +21,12 @@
         <div class="hidden lg:flex lg:gap-x-12">
             <a href="{{ route('home') }}" class="text-sm font-semibold text-gray-900">Berita Terkini</a>
             <a href="{{ route('otherNews') }}" class="text-sm font-semibold text-gray-900">Berita Lainnya</a>
-            <a href="#" class="text-sm font-semibold text-gray-900">Tentang Kami</a>
+            <!-- Navbar link yang akan scroll ke bagian "Tentang Kami" -->
+            <a href="javascript:void(0)" class="text-sm font-semibold text-gray-900" id="goToAbout">
+                Tentang Kami
+            </a>
+
+
         </div>
 
         <!-- Logic for displaying "Profile" with Avatar -->
