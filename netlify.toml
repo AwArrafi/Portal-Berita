@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build"
+  publish = "public"  # Ganti dengan 'dist' jika Anda menggunakan folder dist
+
+[build.environment]
+  NODE_VERSION = "18.16.0"  # Sesuaikan dengan versi Node.js yang Anda gunakan
