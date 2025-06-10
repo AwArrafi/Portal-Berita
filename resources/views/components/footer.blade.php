@@ -2,11 +2,10 @@
     <div class="flex justify-between">
         <!-- Logo atau Icon Kiri -->
         <div class="flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H3" />
-            </svg>
-            <span class="text-xl font-semibold">YourCompany</span>
+            <a href="#" class="-m-1.5 p-1.5">
+                <span class="text-2xl font-extrabold"
+                    style="font-family: 'Poppins', sans-serif; font-weight: 800;">WeNews</span>
+            </a>
         </div>
 
         <!-- Links Kolom -->

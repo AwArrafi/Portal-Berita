@@ -56,7 +56,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('berita', \App\Http\Controllers\Admin\BeritaController::class);
 
-
     Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
     Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
 
@@ -72,6 +71,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 
 // USER
-Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/home', [UserController::class, 'home'])->name('home');
-});
+// Route::middleware(['auth', 'role:user'])->group(function () {
+//     Route::get('/home', [UserController::class, 'home'])->name('home');
+// });
