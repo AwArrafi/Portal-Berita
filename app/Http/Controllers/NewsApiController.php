@@ -14,29 +14,35 @@ class NewsApiController extends Controller
             $limit = $request->get('limit', 5);
             $offset = $request->get('offset', 0);
 
-            $response = Http::get('https://api.thenewsapi.com/v1/news/all', [
-                'api_token' => 'PsXn1cRXaeCIRK13UN0uPBk242KGdCNkPqIsQG9r',
-                'language' => 'en',
-                'limit' => 10,
-            ]);
-
-            $articles = $response->json()['data'] ?? [];
-
-            // Update or create berita berdasarkan title 
-            foreach ($articles as $article) {
-                Berita::updateOrCreate(
-                    ['judul' => $article['title']],
-                    [
-                        'konten' => $article['description'] ?? 'No content',
-                        'gambar_url' => $article['image_url'] ?? '',
-                        'url' => $article['url'] ?? '',
-                    ]
-                );
-            }
-
-
+            // Cek apakah database kosong
             $mainNews = Berita::latest()->first();
 
+            if (!$mainNews) {
+                // Kalau kosong ➜ Fetch API dan isi database
+                $response = Http::get('https://api.thenewsapi.com/v1/news/all', [
+                    'api_token' => 'PsXn1cRXaeCIRK13UN0uPBk242KGdCNkPqIsQG9r',
+                    'language' => 'en',
+                    'limit' => 10,
+                ]);
+
+                $articles = $response->json()['data'] ?? [];
+
+                foreach ($articles as $article) {
+                    Berita::updateOrCreate(
+                        ['judul' => $article['title']],
+                        [
+                            'konten' => $article['description'] ?? 'No content',
+                            'gambar_url' => $article['image_url'] ?? '',
+                            'url' => $article['url'] ?? '',
+                        ]
+                    );
+                }
+
+                // Ambil ulang berita terbaru
+                $mainNews = Berita::latest()->first();
+            }
+
+            // Ambil berita lain selain main news
             $berita = Berita::where('id', '!=', $mainNews->id)
                 ->latest()
                 ->skip($offset)
@@ -106,9 +112,6 @@ class NewsApiController extends Controller
         }
     }
 
-
-
-
     public function loadMoreOtherNews(Request $request)
     {
         try {
@@ -128,8 +131,6 @@ class NewsApiController extends Controller
         }
     }
 
-
-    // Method untuk menampilkan detail berita berdasarkan id
     public function show($id)
     {
         $berita = Berita::find($id);
