@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>@yield('title', 'Admin Dashboard')</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="bg-gray-100 min-h-screen flex">
