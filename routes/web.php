@@ -69,6 +69,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
+Route::get('/debug', function () {
+    return 'Server Running!';
+});
+
 
 // USER
 // Route::middleware(['auth', 'role:user'])->group(function () {
