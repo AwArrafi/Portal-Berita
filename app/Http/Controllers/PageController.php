@@ -22,15 +22,11 @@ class PageController extends Controller
         return view('otherNews');
     }
 
-    public function forum()
-    {
-        return view('forum');
-    }
 
-    public function about()
-    {
-        return view('about');
-    }
+    // public function about()
+    // {
+    //     return view('about');
+    // }
 
 
     // public function show($id)
