@@ -41,7 +41,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
-        "start": "php -S 0.0.0.0:${PORT} -t public",
+        "start": "vendor/bin/heroku-php-apache2 public/",
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
