@@ -73,6 +73,9 @@ Route::get('/debug', function () {
     return 'Server Running!';
 });
 
+Route::get('/laravel-log', function () {
+    return nl2br(file_get_contents(storage_path('logs/laravel.log')));
+});
 
 // USER
 // Route::middleware(['auth', 'role:user'])->group(function () {
