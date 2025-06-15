@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>@yield('title', 'Admin Dashboard')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="/build/assets/app-4yj9CmAe.css">
+    <script src="/build/assets/app-Bf4POITK.js" defer></script>
+
 
 </head>
 

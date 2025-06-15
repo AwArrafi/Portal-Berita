@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeNews</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    <link rel="stylesheet" href="/build/assets/app-4yj9CmAe.css">
+    <script src="/build/assets/app-Bf4POITK.js" defer></script>
 </head>
 
 <body>
