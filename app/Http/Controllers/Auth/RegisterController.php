@@ -31,7 +31,7 @@ class RegisterController extends Controller
         // Validasi input
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'email', 'unique:users,email'],
-            'name' => ['required', 'unique:users,username'],
+            'username' => ['required', 'unique:users,username'],
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
