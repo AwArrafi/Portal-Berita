@@ -57,113 +57,6 @@
         <h3 class="text-2xl font-semibold">Berita Terkini</h3>
     </div>
 
-    {{-- <!-- Section with Text Above Image (with Left Align and Center Image) -->
-    <div class="relative px-6 pt-8 lg:px-8 mt-8">
-        <div class="max-w-7xl mx-auto text-left"> <!-- Align text left -->
-            <div class="flex flex-col items-start"> <!-- Align text left -->
-                <!-- Text Above Image -->
-                <h2 class="text-2xl font-semibold mt-2">Terungkap! Alasan Dibalik Turunnya Harga Properti di Jakarta
-                    Tahun Ini</h2>
-                <div class="flex space-x-2 mt-4">
-                    <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
-                    <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
-                </div>
-                <p class="mt-4 text-lg text-gray-700">Penurunan harga properti di Jakarta selama beberapa bulan terakhir
-                    mengejutkan banyak pihak. Artikel ini mengungkapkan faktor-faktor yang menyebabkan hal tersebut dan
-                    apa dampaknya bagi pasar properti.</p>
-
-                <!-- Image Below Text (Center image) -->
-                <div class="lg:w-1/2 mt-8 mx-auto"> <!-- Center image -->
-                    <img class="rounded-lg shadow-lg" src="assets/img/sample.jpg" alt="New Image">
-
-                    <!-- Baca Selengkapnya text aligned to the bottom right -->
-                    <div class="flex items-center justify-end mt-4"> <!-- Align text to the right -->
-                        <a href="{{ route('news') }}" class="flex items-center space-x-2">
-                            <span class="text-lg font-semibold text-gray-700">Baca Selengkapnya</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Section with Text Above Image (with Left Align and Center Image) -->
-    <div class="relative px-6 pt-8 lg:px-8 mt-24">
-        <div class="max-w-7xl mx-auto text-left"> <!-- Align text left -->
-            <div class="flex flex-col items-start"> <!-- Align text left -->
-                <!-- Text Above Image -->
-                <h2 class="text-2xl font-semibold mt-2">Terungkap! Alasan Dibalik Turunnya Harga Properti di Jakarta
-                    Tahun Ini</h2>
-                <div class="flex space-x-2 mt-4">
-                    <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
-                    <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
-                </div>
-                <p class="mt-4 text-lg text-gray-700">Penurunan harga properti di Jakarta selama beberapa bulan
-                    terakhir mengejutkan banyak pihak. Artikel ini mengungkapkan faktor-faktor yang menyebabkan hal
-                    tersebut dan apa dampaknya bagi pasar properti.</p>
-
-                <!-- Image Below Text (Center image) -->
-                <div class="lg:w-1/2 mt-8 mx-auto"> <!-- Center image -->
-                    <img class="rounded-lg shadow-lg" src="assets/img/sample.jpg" alt="New Image">
-
-                    <!-- Baca Selengkapnya text aligned to the bottom right -->
-                    <div class="flex items-center justify-end mt-4"> <!-- Align text to the right -->
-                        <a href="{{ route('news') }}" class="flex items-center space-x-2">
-                            <span class="text-lg font-semibold text-gray-700">Baca Selengkapnya</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="relative px-6 pt-8 lg:px-8 mt-24">
-        <div class="max-w-7xl mx-auto text-left"> <!-- Align text left -->
-            <div class="flex flex-col items-start"> <!-- Align text left -->
-                <!-- Text Above Image -->
-                <h2 class="text-2xl font-semibold mt-2">Terungkap! Alasan Dibalik Turunnya Harga Properti di Jakarta
-                    Tahun Ini</h2>
-                <div class="flex space-x-2 mt-4">
-                    <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
-                    <span class="inline-block w-4 h-4 rounded-full bg-yellow-500"></span>
-                </div>
-                <p class="mt-4 text-lg text-gray-700">Penurunan harga properti di Jakarta selama beberapa bulan
-                    terakhir mengejutkan banyak pihak. Artikel ini mengungkapkan faktor-faktor yang menyebabkan hal
-                    tersebut dan apa dampaknya bagi pasar properti.</p>
-
-                <!-- Image Below Text (Center image) -->
-                <div class="lg:w-1/2 mt-8 mx-auto"> <!-- Center image -->
-                    <img class="rounded-lg shadow-lg" src="assets/img/sample.jpg" alt="New Image">
-
-                    <!-- Baca Selengkapnya text aligned to the bottom right -->
-                    <div class="flex items-center justify-end mt-4"> <!-- Align text to the right -->
-                        <a href="{{ route('news') }}" class="flex items-center space-x-2">
-                            <span class="text-lg font-semibold text-gray-700">Baca Selengkapnya</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="text-center py-4 mt-25">
-        <h3 class="text-2xl font-semibold">Lihat Berita Lainnya > </h3>
-    </div> --}}
 
     <!-- Displaying Berita -->
     <div id="newsContainer">
@@ -225,7 +118,38 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        Add commentMore actions
+        let beritaCount = 5;
 
+        $("#loadMore").click(function() {
+            $("#loadMore").addClass("hidden");
+            $("#spinner").removeClass("hidden");
+
+            $.ajax({
+                url: "/othernews",
+                type: "GET",
+                data: {
+                    ajax: true,
+                    section: "othernews",
+                    offset: beritaCount
+                },
+                success: function(response) {
+                    $("#newsContainer").append(response);
+                    beritaCount += 5;
+
+                    // Restore tombol dan sembunyikan loading
+                    $("#loadMore").removeClass("hidden");
+                    $("#spinner").addClass("hidden");
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error);
+                    $("#spinner").addClass("hidden");
+                    $("#loadMore").removeClass("hidden").text("Gagal memuat berita");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
