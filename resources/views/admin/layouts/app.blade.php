@@ -96,7 +96,8 @@
         </section>
     </main>
 
-    @vite('resources/js/app.js')
+    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-2Ltsdhws.css">
+    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DaBYqt0m.js" defer></script>
 
 </body>
 
