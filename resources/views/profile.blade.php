@@ -6,8 +6,8 @@
     <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="/build/assets/app-4yj9CmAe.css">
-    <script src="/build/assets/app-Bf4POITK.js" defer></script>
+    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-2Ltsdhws.css">
+    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DaBYqt0m.js" defer></script>
 </head>
 
 <body class="bg-gray-100 min-h-screen">

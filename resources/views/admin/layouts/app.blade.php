@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>@yield('title', 'Admin Dashboard')</title>
-    <link rel="stylesheet" href="/build/assets/app-4yj9CmAe.css">
-    <script src="/build/assets/app-Bf4POITK.js" defer></script>
-
-
+    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-2Ltsdhws.css">
+    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DaBYqt0m.js" defer></script>
 </head>
 
 <body class="bg-gray-100 min-h-screen flex">
