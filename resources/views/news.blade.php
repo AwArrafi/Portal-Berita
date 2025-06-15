@@ -78,7 +78,6 @@
         <x-footer></x-footer>
     </footer>
 
-    <script src="{{ asset('js/dragging.js') }}"></script>
 </body>
 
 </html>
