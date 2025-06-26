@@ -96,8 +96,8 @@
         </section>
     </main>
 
-    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-2Ltsdhws.css">
-    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DaBYqt0m.js" defer></script>
+    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DY8r-DCY.css">
+    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-Dy7WelYK.js" defer></script>
 
 </body>
 

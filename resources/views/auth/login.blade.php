@@ -10,8 +10,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-2Ltsdhws.css">
     <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DaBYqt0m.js" defer></script>
-
-
 </head>
 
 <body>
@@ -39,7 +37,6 @@
             <!-- Formulir login -->
             <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf <!-- CSRF token untuk keamanan -->
-
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-900">Email address</label>
                     <div class="mt-2">
