@@ -14,16 +14,16 @@
         <div class="flex justify-center mt-8 space-x-12">
             <!-- Instagram -->
             <div class="flex items-center">
-                <p class="text-3xl font-semibold mr-4">Awang Arrafi</p>
-                <a href="https://www.instagram.com" target="_blank">
+                <p class="text-3xl font-semibold mr-4">Winnicode Official</p>
+                <a href="https://www.instagram.com/winnicodeofficial?igsh=MW82Yjg5bTFoN3hlMQ==" target="_blank">
                     <img src="{{ asset('assets/img/instagram.png') }}" alt="Instagram" class="h-40 w-40">
                 </a>
             </div>
 
             <!-- TikTok -->
             <div class="flex items-center">
-                <p class="text-3xl font-semibold mr-4">Awang Arrafi</p>
-                <a href="https://www.tiktok.com" target="_blank">
+                <p class="text-3xl font-semibold mr-4">Winnicode Official</p>
+                <a href="https://www.tiktok.com/@winnicodeofficial?_t=ZS-8xW9niSqULQ&_r=1" target="_blank">
                     <img src="{{ asset('assets/img/tiktok.png') }}" alt="TikTok" class="h-40 w-40">
                 </a>
             </div>
