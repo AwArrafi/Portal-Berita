@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('judul', 255);
             $table->text('konten');
-            $table->string('penulis')->nullable();  // Menyimpan nama penulis, bisa kosong
-            $table->string('sumber')->nullable();  // Menyimpan nama sumber berita
-            $table->string('url')->nullable();  // Menyimpan URL artikel
-            $table->string('gambar_url')->nullable();  // Menyimpan URL gambar terkait artikel
+            $table->string('penulis')->nullable();
+            $table->string('sumber')->nullable();
+            $table->string('url')->nullable();
+            $table->string('gambar_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -8,8 +8,8 @@
     <title>WeNews</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-2Ltsdhws.css">
-    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DaBYqt0m.js" defer></script>
+    <link rel="stylesheet" href="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-DY8r-DCY.css">
+    <script src="https://portal-berita-production-b9eb.up.railway.app/build/assets/app-Dy7WelYK.js" defer></script>
 </head>
 
 <body>
